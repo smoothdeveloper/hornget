@@ -1,16 +1,21 @@
 install castle.templateengine:
-    get_from svn("https://svn.castleproject.org/svn/castle/Components/TemplateEngine/trunk/")
+    get_from svn("http://svn.castleproject.org:8080/svn/castle/Components/TemplateEngine/trunk/")
     build_with nant, buildfile("default.build"), FrameworkVersion35	
 
-    with:
-        tasks build
+    switches:
+        parameters "sign=true","common.testrunner.enabled=false", "common.silverlight=false"
 
     shared_library "lib"
     build_root_dir "build"
 
 dependencies:
-    depend "castle.nvelocity"   >> "NVelocity"
+    depend "castle.nvelocity" >> "NVelocity"
+    depend "castle.core"      >> "Castle.Core"
 
+exclude:
+    library "Rhino.Mocks"
+    library "nunit.framework"
+    
 package.category = "TemplateEngines"
 package.description = "The TemplateEngine component is used to abstract template processing approaches. It is useful to provide a minimal template processing to your applications. It comes with a default implementation which relies on NVelocity."
 package.forum = "http://groups.google.com/group/castle-project-users"

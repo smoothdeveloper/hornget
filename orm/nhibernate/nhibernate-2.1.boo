@@ -3,7 +3,7 @@ install nhibernate:
     build_with nant, buildfile("default.build"), FrameworkVersion35	
 
     switches:
-        parameters "with.examples=false"
+        parameters "sign=true","with.examples=false"
 
     with:
         tasks clean,build
@@ -12,8 +12,8 @@ install nhibernate:
     build_root_dir "build"
 
 dependencies:
-    depend "castle.tools" >> "Castle.Core"
-    depend "castle.tools" >> "Castle.DynamicProxy2"
+    depend "castle.core" >> "Castle.Core"
+    depend "castle.dynamicproxy" >> "Castle.DynamicProxy2"
 
 package.category = "ORM"
 package.description = "NHibernate handles persisting plain .NET objects to and from an underlying relational database."
@@ -21,4 +21,3 @@ package.forum = "http://groups.google.co.uk/group/nhusers?hl=en"
 package.homepage = "http://www.nhforge.org"
 package.name = "NHibernate"
 package.notes = ""
-package.version = "1.0.0.0"

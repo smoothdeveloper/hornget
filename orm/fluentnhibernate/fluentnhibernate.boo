@@ -6,14 +6,17 @@ install fluentnhibernate:
     build_root_dir "build"
 
 dependencies:
-    depend "castle.tools"               >> "Castle.Core"
-    depend "castle.tools"               >> "Castle.DynamicProxy2"
-    depend "castle.tools"               >> "Castle.DynamicProxy"
-    depend "nhibernate.caches"          >> "NHibernate.Caches.SysCache"
-    depend "nhibernate"        >> "2.1" >> "NHibernate"
-    depend "nhibernate"        >> "2.1" >> "NHibernate.ByteCode.Castle"
-    depend "nhibernate"        >> "2.1" >> "Iesi.Collections"
-
+    depend "castle.core"	        >> "Castle.Core"
+    depend "castle.dynamicproxy"	>> "Castle.DynamicProxy2"
+    depend "castle.dynamicproxy"	>> "Castle.DynamicProxy"
+    depend "nhibernate.caches"		>> "NHibernate.Caches.SysCache"
+    depend "nhibernate"				>> "NHibernate"
+    depend "nhibernate"				>> "NHibernate.ByteCode.Castle"
+    depend "nhibernate"				>> "Iesi.Collections"
+	
+exclude:
+    library "Rhino.Mocks"
+  
 package.category = "ORM"
 package.description = "Fluent, XML-less, compile safe, automated, testable mappings for NHibernate "
 package.forum = "http://groups.google.com/group/fluent-nhibernate"

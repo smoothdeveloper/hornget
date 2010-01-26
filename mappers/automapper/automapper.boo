@@ -5,8 +5,11 @@
     with:
         tasks full
 
-    build_root_dir "build"
+    build_root_dir "release"
     shared_library "lib"
+
+exclude:
+  library "Rhino.Mocks"
 
 package.category = "Mappers"
 package.description = "A convention-based object-object mapper in .NET."

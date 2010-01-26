@@ -3,7 +3,7 @@ install nhibernate.linq:
     build_with nant, buildfile("default.build"), FrameworkVersion35	
 
     switches:
-        parameters "skip.tests=true"
+        parameters "sign=true","skip.tests=true"
 
     with:
         tasks clean,build
@@ -14,8 +14,8 @@ install nhibernate.linq:
     build_root_dir "build"
 
 dependencies:
-    depend "castle.tools"          >> "Castle.Core"
-    depend "castle.tools"          >> "Castle.DynamicProxy2"
+    depend "castle.core"                  >> "Castle.Core"
+    depend "castle.dynamicproxy"          >> "Castle.DynamicProxy2"
     depend "nhibernate"   >> "2.1" >> "NHibernate"
     depend "nhibernate"   >> "2.1" >> "Iesi.Collections"
     depend "nhibernate"   >> "2.1" >> "NHibernate.ByteCode.Castle"

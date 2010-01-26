@@ -1,40 +1,33 @@
 install castle.activerecord:
-    include:
-        repository(castle, part("SharedLibs"), to("SharedLibs"))
-        repository(castle, part("ActiveRecord"), to("ActiveRecord"))
-        repository(castle, part("common.xml"), to("common.xml"))
-        repository(castle, part("common-project.xml"), to("common-project.xml"))
-        repository(castle, part("CastleKey.snk"), to("CastleKey.snk"))
-
-    build_with nant, buildfile("ActiveRecord/activerecord.build"), FrameworkVersion35
+    get_from svn("http://svn.castleproject.org:8080/svn/castle/ActiveRecord/trunk/")
+    build_with nant, buildfile("default.build"), FrameworkVersion35
 
     switches:
         parameters "sign=true","common.testrunner.enabled=false", "common.silverlight=false"
 
-    shared_library "SharedLibs"
+    shared_library "lib"
     build_root_dir "build"
-
+    
 dependencies:
-    depend "castle.tools"                >> "Castle.Core"
-    depend "castle.tools"                >> "Castle.DynamicProxy2"
-    depend "castle.components"           >> "Castle.Components.Validator"
-    #depend "nhibernate.search"          >> "NHibernate.Search"
-    depend "nhibernate"         >> "2.1" >> "NHibernate"
-    depend "nhibernate"         >> "2.1" >> "NHibernate.ByteCode.Castle"
-    depend "nhibernate"         >> "2.1" >> "Iesi.Collections"
-    depend "rhino.dsl"   >> "Boo.Lang"
-    depend "rhino.dsl"   >> "Boo.Lang.CodeDom"
-    depend "rhino.dsl"   >> "Boo.Lang.Compiler"
-    depend "rhino.dsl"   >> "Boo.Lang.dll"
-    depend "rhino.dsl"   >> "Boo.Lang.Extensions"
-    depend "rhino.dsl"   >> "Boo.Lang.Interpreter"
-    depend "rhino.dsl"   >> "Boo.Lang.Parser"
-    depend "rhino.dsl"   >> "Boo.Lang.PatternMatching"
-    depend "rhino.dsl"   >> "Boo.Lang.Useful"
+    dependency "castle.core"					>> "Castle.Core"
+    dependency "castle.dynamicproxy"			>> "Castle.DynamicProxy2"
+    dependency "castle.components.validator"    >> "Castle.Components.Validator"
+    dependency "nhibernate"			>> "2.1"	>> "NHibernate"
+    dependency "nhibernate"			>> "2.1"	>> "Antlr3.Runtime"
+    dependency "nhibernate"			>> "2.1"	>> "Iesi.Collections"
+    dependency "nhibernate"			>> "2.1"	>> "NHibernate.ByteCode.Castle"
+    dependency "nhibernate"			>> "2.1"	>> "NHibernate.Linq"    
+    dependency "nhibernate.search"	>> "NHibernate.Search"
+    dependency "nhibernate.search"	>> "Lucene.Net"
+    dependency "nhibernate.linq"	>>  "2.1"  >> "NHibernate.Linq"
 
-package.category = "IoC"
+exclude:
+    library "Rhino.Mocks"
+    library "nunit.framework"
+    
+package.category = "ORM"
 package.description = "The Castle ActiveRecord project is an implementation of the ActiveRecord pattern for .NET."
-package.forum = "http://groups.google.co.uk/group/castle-project-users?hl=en"
+package.forum = "http://groups.google.com/group/castle-project-users"
 package.homepage = "http://www.castleproject.org/"
 package.name = "Castle ActiveRecord"
 package.notes = ""
